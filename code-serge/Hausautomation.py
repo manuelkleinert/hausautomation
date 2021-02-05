@@ -1,26 +1,6 @@
-#Hausautomation Laubacher by Serge
-
-
-#Version A1
-#Kls 10.11.2019 erstes grafisches Panel auf Basis büssliküche umgebaut auf Python Version 3
-#Kls 11.11.2019 Kommunikation empfang integer und bool läuft nun stabil
-#Kls 25.08.2020 4 Storen gemacht Kommando werte aber noch mit Arduino abstimmen
-#Version A2
-#Kls und Manuel 23.10.2020 Klassen in eigenen Files erstellt und Storenbutton sauber gegliedert
-#Version A3
-#Kls 30.12.2020 Klassen Storen OG-DG erstellt
-
-#################################################################################################################
-#****************************************-------Initialisieren----------************************************************
-#********************************************************************************************************************
-
-
-#Info durch den Tkinter import mit import*  anstelle "import TKinter as tk" können die Grafikelemnte
-#überall verwendet werden und ie Funktionen wie Button werden direkt erkennt. also nicht mit tk.Button
-
-#Funktionen Importieren -------------------------------------------
 import serial
-from tkinter import *  #Grafikoberfläche TKinter importieren  //Achtung ab Pyhton 3.0 tkinter kleinschreiben sonst gross Tkinter!!!
+import tkinter
+from tkinter import Tk, Frame, Label, Button #Grafikoberfläche TKinter importieren  //Achtung ab Pyhton 3.0 tkinter kleinschreiben sonst gross Tkinter!!!
 from tkinter.filedialog import askopenfilename #Menübalken       /Achtung ab Python 3.0 tkinter.filedialog vorher tkfiledialog
 
 
@@ -35,9 +15,11 @@ from System import System
 #Serialle Verbindung mit Arduino aufbauen ------------------------------
 #Versuch über schnitstelle 0 oder allenfalls 1 die Verbindung aufzubauen
 #timeout 0 verhindert das blockieren des Programms Sehr Wichtig!!!!!!
-try: ser = serial.Serial('/dev/ttyACM0',9600,timeout=0)
+try: 
+    ser = serial.Serial('/dev/ttyACM0',9600,timeout=0)
 except  serial.SerialException:
-    ser = serial.Serial('/dev/ttyACM1',9600,timeout=0)
+    print('noserial')
+    ser = serial.Serial()
         
 
 
@@ -329,7 +311,7 @@ root.geometry('1920x1080')
 #root[bg] = "blue"
 
 #Methode Daten empfangen aufrufen
-empfangen()
+#empfangen()
 
 #Fenster-Inhalt definieren
 label1 = Label(root, text="Gebäudeleitsystem",
@@ -423,7 +405,7 @@ h_button4.place(x=315,y=825)
 #************************************************************************************************************   
 
 #Mainloop damit Fenster geöffnet bleibt
-mainloop()
+root.mainloop()
 #Hauptprogramm ENDE
 #************************************************************************************************************
 
