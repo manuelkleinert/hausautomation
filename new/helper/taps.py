@@ -1,4 +1,4 @@
-from tkinter import ttk
+from tkinter import ttk, LEFT
 from tkinter.ttk import Notebook
 
 class Taps(Notebook):
@@ -12,7 +12,7 @@ class Taps(Notebook):
     def addTap(self, title, tapFrame = None):
         if not tapFrame:
             tapFrame = ttk.Frame(self)
-            tapFrame.pack(side = 'left')
+            tapFrame.pack(side = LEFT)
             
         self.add(tapFrame, text = title)
         return tapFrame

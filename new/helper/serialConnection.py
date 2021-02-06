@@ -25,6 +25,7 @@ class SerialConnection:
 
 
     def write(self, code):
+        self.connection.open()
         if self.connection.is_open:
             self.connection.write(str.encode(code))
             self.connection.close()
