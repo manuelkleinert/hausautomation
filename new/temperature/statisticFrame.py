@@ -47,5 +47,5 @@ class StatisticFrame(Frame):
         # Statistic
         self.statistic = StatisticPrint(self, self.stationSelect.get(), self.dateFromSelect.get_date(), self.dateToSelect.get_date(), self.statisticTypeSelect.get())
         
-    def updateStatistic(self, *args):
+    def updateStatistic(self):
         self.statistic.set(self.stationSelect.get(), self.dateFromSelect.get_date(), self.dateToSelect.get_date(), self.statisticTypeSelect.get())
