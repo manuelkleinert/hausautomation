@@ -2,6 +2,13 @@ from tkinter import Frame, Label, StringVar, OptionMenu, W
 
 class Select(Frame):
     def __init__(self, master = None, labelText = '', options = [], width = 30):
+        '''
+        Create a selector with label
+        :param master: Frame, frame
+        :param labelText: Frame, label texte 
+        :param options: Array, Frame options
+        :param width: Int, label with
+        '''
         Frame.__init__(self, master)
         
         self.pack()

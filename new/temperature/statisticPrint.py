@@ -21,14 +21,10 @@ class StatisticPrint():
         '''
         Parameters
         ----------
-        master : frame
-            Frame where the canvas set
-        dateFrom : datetime
-            Statistic start date
-        dateTo : datetime
-            Statistic end date
-        statisticType : string
-            Set display type (D,m,Y)
+        :param master: Frame, Frame where the canvas set
+        :param dateFrom: datetime, Statistic start date
+        :param dateTo: datetime, Statistic end date
+        :param statisticType: String, Set display type (D,m,Y)
         '''
         
         # Db
