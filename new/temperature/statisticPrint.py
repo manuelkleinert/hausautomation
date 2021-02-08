@@ -17,7 +17,7 @@ class StatisticPrint():
     Statistic print canvas class
     '''
     
-    def __init__(self, master, stationId = None, dateFrom = datetime.today(), dateTo = datetime.today(), statisticType = 'D'):
+    def __init__(self, master):
         '''
         Parameters
         ----------
@@ -36,7 +36,6 @@ class StatisticPrint():
         
         # Print matplotlib statistic to canvas
         self.canvas.get_tk_widget().pack(side = tkinter.TOP, fill = tkinter.BOTH, expand = 1)
-        
     
     def set(self, stationId, dateFrom = datetime.today(), dateTo = datetime.today(), statisticType = 'D'):
         self.stationId = stationId

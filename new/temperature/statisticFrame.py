@@ -14,7 +14,6 @@ class StatisticFrame(Frame):
         Frame.__init__(self)
         self.pack()
         
-        self.statistic = StatisticPrint(self)
         
         # Db
         db = Db()
@@ -42,14 +41,15 @@ class StatisticFrame(Frame):
         self.dateToSelect.set_date(now)
         self.dateToSelect.pack()
         
+        # Statistic
+        self.statistic = StatisticPrint(self)
+        self.updateStatistic()
+        
         # Set Events
         self.dateFromSelect.bind("<<DateEntrySelected>>", self.updateStatistic)  
         self.dateToSelect.bind("<<DateEntrySelected>>", self.updateStatistic)  
         self.stationSelect.setEvent(self.updateStatistic)
         self.statisticTypeSelect.setEvent(self.updateStatistic)
-        
-        # Statistic
-        self.updateStatistic()
         
     def updateStatistic(self, *args):
         self.statistic.set(self.stationSelect.get(), self.dateFromSelect.get_date(), self.dateToSelect.get_date(), self.statisticTypeSelect.get())

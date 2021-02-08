@@ -12,3 +12,4 @@ class blaindButton(Button):
     
     def buttonEvent(self):
         self.connection.write(self.port)
+        print(self.connection.read())

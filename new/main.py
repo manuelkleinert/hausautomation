@@ -18,7 +18,7 @@ class Application(Frame):
         # self.db.addStation('Garten')
         
         # Template add temperature
-        self.db.addTemperature(1, 24.25)
+        # self.db.addTemperature(1, 24.25)
         
         # Create new Tapbar
         tabs = Taps(self)

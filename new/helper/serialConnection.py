@@ -55,3 +55,7 @@ class SerialConnection:
             self.connection.write(code.encode())
             return True
         return False
+    
+    def read(self):
+        return self.connection.readline()
+        
