@@ -19,6 +19,7 @@ try:
     ser = serial.Serial('/dev/ttyACM0',9600,timeout=0)
 except  serial.SerialException:
     print('noserial')
+    #  ser = serial.Serial('/dev/ttyACM1',9600,timeout=0)
     ser = serial.Serial()
         
 

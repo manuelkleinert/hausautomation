@@ -1,5 +1,5 @@
 from tkinter import Button
-from helper.connection import Connection
+from helper.serialConnection import SerialConnection
 
 class blaindButton(Button):
     def __init__(self, master, name, port):
@@ -8,7 +8,7 @@ class blaindButton(Button):
         self.pack()
 
         self.port = port
-        self.connection = Connection()
+        self.connection = SerialConnection()
     
     def buttonEvent(self):
         print(self.port)
