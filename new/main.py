@@ -9,7 +9,6 @@ class Application(Frame):
         Frame.__init__(self, master)
         self.pack()
         
-        
         master.title('Temperature Statistics')
         
         # Tutorial Add a new Temperature
@@ -19,7 +18,7 @@ class Application(Frame):
         # self.db.addStation('Garten')
         
         # Template add temperature
-        # self.db.addTemperature(1, 28.88657)
+        self.db.addTemperature(1, 24.25)
         
         # Create new Tapbar
         tabs = Taps(self)

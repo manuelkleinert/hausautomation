@@ -15,42 +15,43 @@ class SerialConnection:
         mainApp = modules['__main__']
         
         # Set serial connection
-        if not hasattr(mainApp, 'serialConnection'):
-            for port in self.getPorts():
-                mainApp.serialConnection = Serial(port, baudrate = 19200, timeout=1)
-                break
-            
+        if not hasattr(mainApp, 'serialConnection'):        
+            ports = self.getPorts()
+            if ports:
+                for port in self.getPorts():
+                    try:
+                        mainApp.serialConnection = Serial(port, baudrate = 19200, timeout = .5)
+                        break
+                    except (OSError, SerialException):
+                        pass
+                
+                # Port already in use or connection error
+                if not hasattr(mainApp, 'serialConnection') or not mainApp.serialConnection.is_open:
+                    messagebox.showerror(title = 'Serial Connection', message = 'Serial connection error or port already in use')
+                    mainApp.serialConnection = Serial()
+            else:
+                messagebox.showerror(title = 'Serial Connection', message = 'No Serial Port found')
+                mainApp.serialConnection = Serial()
+        
         self.connection = mainApp.serialConnection
 
     def getPorts(self):
         """ 
         Lists serial port names
-        :raises EnvironmentError: On unsupported or unknown platforms
         :returns: A list of the serial ports available on the system
         """
         if platform.startswith('win'):
-            ports = ['COM%s' % (i + 1) for i in range(256)]
+            return ['COM%s' % (i + 1) for i in range(256)]
         elif platform.startswith('linux') or platform.startswith('cygwin'):
             # this excludes your current terminal "/dev/tty"
-            ports = glob.glob('/dev/tty[A-Za-z]*')
+            return glob.glob('/dev/tty[A-Za-z]*')
         elif startswith('darwin'):
-            ports = glob.glob('/dev/tty.*')
-        else:
-            raise EnvironmentError('Unsupported platform')
-
-        result = []
-        for port in ports:
-            try:
-                s = Serial(port)
-                s.close()
-                result.append(port)
-            except (OSError, SerialException):
-                pass
-        return result
+            return glob.glob('/dev/tty.*')
+        return None
 
 
     def write(self, code):
         if self.connection.is_open:
-            self.connection.write(str.encode(code))
+            self.connection.write(code.encode())
             return True
         return False

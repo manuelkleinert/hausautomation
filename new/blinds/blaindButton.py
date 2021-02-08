@@ -11,5 +11,4 @@ class blaindButton(Button):
         self.connection = SerialConnection()
     
     def buttonEvent(self):
-        print(self.port)
         self.connection.write(self.port)
