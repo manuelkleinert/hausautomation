@@ -9,6 +9,7 @@ class Application(Frame):
         Frame.__init__(self, master)
         self.pack()
         
+        
         master.title('Temperature Statistics')
         
         # Tutorial Add a new Temperature
