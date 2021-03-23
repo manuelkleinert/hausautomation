@@ -1,4 +1,4 @@
-
+import global
 from sys import modules
 from tkinter import messagebox
 from sys import platform
