@@ -1,5 +1,4 @@
-import sys
-import glob
+import sys, glob
 from sys import modules
 from tkinter import messagebox
 from sys import platform
